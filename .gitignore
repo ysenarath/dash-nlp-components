@@ -281,3 +281,4 @@ JuliaManifest.toml
 /deps
 /inst/deps/
 /R
+/man
