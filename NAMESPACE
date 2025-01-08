@@ -1,6 +1,5 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
 export(ComponentBase)
-export(OtherComponent)
 export(otherComponent)
 export(componentBase)

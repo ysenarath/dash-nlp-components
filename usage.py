@@ -5,7 +5,7 @@ app = Dash(__name__)
 
 app.layout = html.Div(
     [
-        dash_nlp_components.OtherComponent(
+        dash_nlp_components.ComponentBase(
             id="input", value="my-value", label="my-label"
         ),
         html.Div(id="output"),
