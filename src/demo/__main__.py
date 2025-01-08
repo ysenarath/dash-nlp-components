@@ -1,4 +1,4 @@
-import dash_nlp_components as dnc
+import dash_text_components as dnc
 
 from dash import Dash, callback, html, Input, Output
 

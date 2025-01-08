@@ -284,6 +284,6 @@ JuliaManifest.toml
 /man
 /src/jl
 /src/*.jl
-/dash_nlp_components
-!dash_nlp_components/__init__.py
+!/dash_text_components/__init__.py
+/dash_text_components
 NAMESPACE

@@ -1,6 +1,6 @@
 
-name = "DashNlpComponents"
-uuid = "1b08a953-4be3-4667-9a23-4a382d478edb"
+name = "DashTextComponents"
+uuid = "1b08a953-4be3-4667-9a23-08d238d55584"
 authors = ["Yasas Wijesu <yasas.mason@gmail.com>"]
 version = "0.0.1"
 

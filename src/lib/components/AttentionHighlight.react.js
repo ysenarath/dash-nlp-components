@@ -23,9 +23,9 @@ export default class AttentionHighlight extends Component {
                     let opacity = 0;
                     if (hoveredIndex === null) {
                         opacity = 0.1; // Light default highlight when nothing is hovered
-                    } else if (attentionMatrix && 
-                             attentionMatrix[hoveredIndex] && 
-                             typeof attentionMatrix[hoveredIndex][index] === 'number') {
+                    } else if (attentionMatrix &&
+                        attentionMatrix[hoveredIndex] &&
+                        typeof attentionMatrix[hoveredIndex][index] === 'number') {
                         // Get attention weight for this token when another token is hovered
                         opacity = attentionMatrix[hoveredIndex][index];
                     }

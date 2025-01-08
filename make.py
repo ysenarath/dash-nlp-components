@@ -13,13 +13,13 @@ def clean():
     for file in Path("src").glob("*.jl"):
         if str(file).endswith(".jl"):
             file.unlink()
-    os.rename("dash_nlp_components", "dash_nlp_components_temp")
-    Path("dash_nlp_components").mkdir(exist_ok=False)
+    os.rename("dash_text_components", "dash_text_components_temp")
+    Path("dash_text_components").mkdir(exist_ok=False)
     # move init
     shutil.move(
-        "dash_nlp_components_temp/__init__.py", "dash_nlp_components/__init__.py"
+        "dash_text_components_temp/__init__.py", "dash_text_components/__init__.py"
     )
-    shutil.rmtree("dash_nlp_components_temp")
+    shutil.rmtree("dash_text_components_temp")
 
 
 def make():
