@@ -280,3 +280,4 @@ Manifest.toml
 JuliaManifest.toml
 /deps
 /inst/deps/
+/R
