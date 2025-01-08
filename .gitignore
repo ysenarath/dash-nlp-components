@@ -282,3 +282,8 @@ JuliaManifest.toml
 /inst/deps/
 /R
 /man
+/src/jl
+/src/*.jl
+/dash_nlp_components
+!dash_nlp_components/__init__.py
+NAMESPACE
