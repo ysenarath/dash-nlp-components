@@ -13,33 +13,83 @@ export default class AttentionHighlight extends Component {
         };
     }
 
+    validateProps() {
+        const { tokens, attentionMatrix } = this.props;
+        
+        if (!attentionMatrix) return true;
+        
+        // Check matrix dimensions match tokens length
+        if (attentionMatrix.length !== tokens.length) {
+            console.error('AttentionMatrix rows must match tokens length');
+            return false;
+        }
+        
+        // Check each row length and value range
+        for (let i = 0; i < attentionMatrix.length; i++) {
+            if (!attentionMatrix[i] || attentionMatrix[i].length !== tokens.length) {
+                console.error('AttentionMatrix must be square');
+                return false;
+            }
+            for (let j = 0; j < attentionMatrix[i].length; j++) {
+                if (typeof attentionMatrix[i][j] !== 'number' || 
+                    attentionMatrix[i][j] < 0 || 
+                    attentionMatrix[i][j] > 1) {
+                    console.error('AttentionMatrix values must be numbers between 0 and 1');
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    getHighlightColor(index, hoveredIndex, attentionWeight) {
+        if (!this.validateProps()) return 'transparent';
+        
+        if (hoveredIndex === null) {
+            // Default state: light gray background
+            return 'rgba(200, 200, 200, 0.1)';
+        }
+        
+        if (index === hoveredIndex) {
+            // Currently hovered token: blue highlight
+            return 'rgba(66, 135, 245, 0.3)';
+        }
+        
+        // Related tokens: orange highlight with intensity based on attention
+        // Scale up small values for better visibility
+        const scaledOpacity = Math.pow(attentionWeight, 0.5) * 0.8;
+        return `rgba(255, 165, 0, ${scaledOpacity})`;
+    }
+
     render() {
         const { id, tokens, attentionMatrix, setProps } = this.props;
         const { hoveredIndex } = this.state;
 
         return (
-            <div id={id} style={{ lineHeight: '2em' }}>
+            <div id={id} style={{ 
+                lineHeight: '2em',
+                padding: '1em',
+                fontFamily: 'sans-serif'
+            }}>
                 {tokens.map((token, index) => {
-                    let opacity = 0;
-                    if (hoveredIndex === null) {
-                        opacity = 0.1; // Light default highlight when nothing is hovered
-                    } else if (attentionMatrix &&
-                        attentionMatrix[hoveredIndex] &&
-                        typeof attentionMatrix[hoveredIndex][index] === 'number') {
-                        // Get attention weight for this token when another token is hovered
-                        opacity = attentionMatrix[hoveredIndex][index];
-                    }
+                    const attentionWeight = hoveredIndex !== null && attentionMatrix ? 
+                        attentionMatrix[hoveredIndex][index] : 0;
 
                     return (
                         <span
                             key={index}
                             style={{
-                                padding: '0.2em',
-                                margin: '0.1em',
+                                padding: '0.4em 0.6em',
+                                margin: '0.2em',
                                 display: 'inline-block',
-                                backgroundColor: `rgba(255, 255, 0, ${opacity})`,
-                                transition: 'background-color 0.3s ease',
-                                cursor: 'pointer'
+                                backgroundColor: this.getHighlightColor(index, hoveredIndex, attentionWeight),
+                                transition: 'all 0.3s ease',
+                                cursor: 'pointer',
+                                border: '1px solid rgba(0, 0, 0, 0.1)',
+                                borderRadius: '4px',
+                                fontSize: '1em',
+                                boxShadow: hoveredIndex === index ? 
+                                    '0 2px 4px rgba(0,0,0,0.1)' : 'none'
                             }}
                             onMouseEnter={() => this.setState({ hoveredIndex: index })}
                             onMouseLeave={() => this.setState({ hoveredIndex: null })}
