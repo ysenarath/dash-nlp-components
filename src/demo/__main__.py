@@ -1,5 +1,3 @@
-
-
 import dash_nlp_components
 from dash import Dash, callback, html, Input, Output
 
@@ -7,9 +5,7 @@ app = Dash(__name__)
 
 app.layout = html.Div(
     [
-        dash_nlp_components.ComponentBase(
-            id="input", value="my-value", label="my-label"
-        ),
+        dash_nlp_components.TextInput(id="input", value="my-value", label=""),
         html.Div(id="output"),
     ]
 )

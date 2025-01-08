@@ -1,6 +1,6 @@
 /* eslint-disable import/prefer-default-export */
-import ComponentBase from './components/ComponentBase.react';
+import TextInput from './components/TextInput.react';
 
 export {
-    ComponentBase,
+    TextInput,
 };

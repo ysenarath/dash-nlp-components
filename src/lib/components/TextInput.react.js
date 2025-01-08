@@ -8,13 +8,13 @@ import PropTypes from 'prop-types';
  * It renders an input with the property `value`
  * which is editable by the user.
  */
-export default class ComponentBase extends Component {
+export default class TextInput extends Component {
     render() {
         const { id, label, setProps, value } = this.props;
 
         return (
             <div id={id}>
-                ExampleComponent: {label}&nbsp;
+                {label}
                 <input
                     value={value}
                     onChange={
@@ -35,9 +35,9 @@ export default class ComponentBase extends Component {
     }
 }
 
-ComponentBase.defaultProps = {};
+TextInput.defaultProps = {};
 
-ComponentBase.propTypes = {
+TextInput.propTypes = {
     /**
      * The ID used to identify this component in Dash callbacks.
      */
