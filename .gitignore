@@ -290,3 +290,4 @@ NAMESPACE
 /Project.toml
 /DESCRIPTION
 build-and-publish.py
+.DS_Store
